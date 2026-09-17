@@ -1,0 +1,34 @@
+{
+  "app_id": "portrait_chinese_clock-90c2e671",
+  "display_name": "中文报时时钟",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "display": {
+    "orientation": "portrait"
+  },
+  "lockscreen": {
+    "enabled": true,
+    "entry": "lockscreen.lua",
+    "interval_sec": 60
+  },
+  "author": "XTApp Creator",
+  "description": "用中文时刻结构阅读时间，呈现更像海报的竖版排版。",
+  "name": "portrait_chinese_clock",
+  "app_icon_l": "app_icon_l",
+  "app_icon_s": "app_icon_s",
+  "splash": "splash",
+  "preload_assets": [
+    "splash",
+    "brush_digit_0",
+    "brush_digit_1",
+    "brush_digit_2",
+    "brush_digit_3",
+    "brush_digit_4",
+    "brush_digit_5",
+    "brush_digit_6",
+    "brush_digit_7",
+    "brush_digit_8",
+    "brush_digit_9"
+  ]
+}

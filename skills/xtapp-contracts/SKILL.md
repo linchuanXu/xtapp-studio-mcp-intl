@@ -1,0 +1,14 @@
+---
+name: xtapp-contracts
+description: Use the public XTApp Lua contract and public app templates. Use when writing XTApp Lua, looking up on_input/g:text/manifest, or copying a store template.
+---
+
+Before answering or changing XTApp code, classify the request as `input`, `graphics`, `runtime`, `manifest`, `network`, `assets`, `studio-preview`, or `overview`. Then call `search_xtapp_knowledge` with the matching topic/API terms and use the returned `topic`, `api`, `version`, `source`, `content`, and `example` fields in the answer or implementation. If the search returns no authoritative match, say that the behavior is unknown and request verification; never invent an API from memory.
+
+For a runtime problem such as “on_input 不生效”, query the contract first, then call `inspect_xtapp_preview_context` to inspect the active project's relevant Lua/Manifest snippets and recent Studio logs. Separate contract facts, project observations, and hypotheses in the response.
+
+Use `list_xtapp_store_apps` to discover public apps, then `get_xtapp_store_template` to inspect text sources and the asset inventory. That tool does not inline binaries. A runnable copy with art requires `copy_xtapp_store_template`; never reconstruct missing `.xic` or images from the inspect result. The public contract is authoritative; do not infer private firmware or editor behavior. After edits, run validation and preview using the available Studio tools.
+
+When the user explicitly asks to bring a public app into the current project, call `copy_xtapp_store_template` with a new destination directory. Never overwrite an existing destination.
+
+If the user has not named a folder or app, quote the create sentence from `AGENT_PROMPT.md` and wait. After they say it (default: create `todo-list` and make a todo app), write there and preview that directory. Do not ask again. If they named another path, use it. If the current directory already has `manifest.json` and its entry Lua, use it and do not nest.

@@ -1,0 +1,26 @@
+{
+  "app_id": "physics_ink-7c2e91a4",
+  "display_name": "受力图说",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "display": {
+    "orientation": "portrait"
+  },
+  "author": "XTApp Studio",
+  "description": "十五则高中力学与电路：当场作图，点某一步就加粗对应的力或元件。",
+  "name": "physics_ink",
+  "app_icon_l": "app_icon_l",
+  "app_icon_s": "app_icon_s",
+  "splash": "splash",
+  "preload_assets": [
+    "splash"
+  ],
+  "data_files": [
+    {
+      "name": "scenes.tsv",
+      "format": "tsv",
+      "max_bytes": 16384
+    }
+  ]
+}

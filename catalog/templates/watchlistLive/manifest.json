@@ -1,0 +1,16 @@
+{
+  "app_id": "watchlist_live-0af83d64",
+  "name": "watchlist_live",
+  "display_name": "自选行情",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "author": "XTApp Creator",
+  "description": "保存任意港股、A股和美股代码，并联网查看真实报价。",
+  "permissions": ["net.http"],
+  "display": { "orientation": "portrait" },
+  "app_icon_l": "app_icon_l",
+  "app_icon_s": "app_icon_s",
+  "splash": "splash",
+  "preload_assets": ["splash", "app_icon_l", "app_icon_s"]
+}

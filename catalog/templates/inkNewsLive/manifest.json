@@ -1,0 +1,16 @@
+{
+  "app_id": "ink_news_live-7d8f2c1a",
+  "name": "ink_news_live",
+  "display_name": "墨闻",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "author": "XTApp Creator",
+  "description": "点击刷新获取真实新闻头条的阅读器。",
+  "permissions": ["net.http"],
+  "display": { "orientation": "portrait" },
+  "app_icon_l": "app_icon_l",
+  "app_icon_s": "app_icon_s",
+  "splash": "splash",
+  "preload_assets": ["splash", "app_icon_l", "app_icon_s"]
+}

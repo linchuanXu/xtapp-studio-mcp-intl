@@ -1,0 +1,8 @@
+{
+  "id": "intl",
+  "studioOrigin": "",
+  "pluginRepo": "https://github.com/linchuanXu/xtapp-codex-plugin-intl",
+  "githubSource": "linchuanXu/xtapp-codex-plugin-intl",
+  "marketplaceName": "xtapp-codex-plugin-intl-github",
+  "pluginSelector": "xtapp-codex-plugin@xtapp-codex-plugin-intl-github"
+}

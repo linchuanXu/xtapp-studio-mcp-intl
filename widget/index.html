@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>XTApp Studio</title>
+<style>html,body{margin:0;height:100%;font:14px system-ui,sans-serif;background:#f6f7f9;color:#18202a}main{padding:18px;display:grid;gap:14px}section{background:#fff;border:1px solid #dfe4ea;border-radius:12px;padding:14px}h1{font-size:20px;margin:0}.muted{color:#66717d}.status{display:flex;gap:8px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;background:#e5a400}.dot.ok{background:#1f8a4c}.dot.bad{background:#c23b22}.row{display:flex;justify-content:space-between;gap:12px;margin:8px 0}button{border:1px solid #bfc8d2;border-radius:8px;padding:7px 10px;background:#fff;cursor:pointer}a{color:#1254c8;word-break:break-all}pre{white-space:pre-wrap;max-height:240px;overflow:auto;background:#f3f5f7;padding:10px;border-radius:8px}</style></head>
+<body><main><section><div class="status"><span class="dot" id="dot"></span><h1>XTApp 预览状态</h1></div><p class="muted">这里不是模拟器。X4 画面在官网预览页。</p><div class="row"><span>连接</span><strong id="connected">检查中</strong></div><div class="row"><span>应用</span><strong id="app">未同步</strong></div><div class="row"><span>预览页</span><a id="link" target="_blank" rel="noreferrer">打开官网预览</a></div><button id="refresh">刷新状态</button></section><section><strong>下一步</strong><pre id="output">正在读取官网预览状态…</pre></section></main>
+<script>(async()=>{
+const out=document.querySelector('#output')
+const dot=document.querySelector('#dot')
+const connected=document.querySelector('#connected')
+const app=document.querySelector('#app')
+const link=document.querySelector('#link')
+const call=async(name,arguments_={})=>{
+  if(window.openai?.callTool)return window.openai.callTool({name,arguments:arguments_})
+  if(window.cowartMcp?.callServerTool)return window.cowartMcp.callServerTool({name,arguments:arguments_})
+  return null
+}
+const read=async()=>{
+  out.textContent='正在读取官网预览状态…'
+  try{
+    const r=await call('get_xtapp_preview_status')
+    const data=r?.structuredContent||{}
+    const text=data.message||r?.content?.[0]?.text||JSON.stringify(r,null,2)||'Widget 还没连上插件。'
+    const url=data.previewUrl||''
+    const open=data.userStatus && data.userStatus!=='need_login_or_open_page'
+    connected.textContent=open?'已连接官网预览页':'未连接'
+    app.textContent=data.displayName||'还没同步当前项目'
+    if(url){link.href=url;link.textContent=url}
+    dot.className='dot '+(open?'ok':'bad')
+    out.textContent=open?`${text}\n\n模拟器只在上面这个网页里。`:`${text}\n\n打开链接后如果要登录，先登录，再回到同一条地址。`
+  }catch(e){out.textContent=e.message}
+}
+document.querySelector('#refresh').onclick=read
+await read()
+})()</script></body></html>

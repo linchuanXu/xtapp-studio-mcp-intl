@@ -1,0 +1,26 @@
+{
+  "app_id": "geometry_ink-c3e8a47d",
+  "display_name": "尺规几何",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "display": {
+    "orientation": "portrait"
+  },
+  "author": "XTApp Studio",
+  "description": "十六则高中平面几何定理：当场作图，点某一步就加粗对应边角。",
+  "name": "geometry_ink",
+  "app_icon_l": "app_icon_l",
+  "app_icon_s": "app_icon_s",
+  "splash": "splash",
+  "preload_assets": [
+    "splash"
+  ],
+  "data_files": [
+    {
+      "name": "theorems.tsv",
+      "format": "tsv",
+      "max_bytes": 16384
+    }
+  ]
+}

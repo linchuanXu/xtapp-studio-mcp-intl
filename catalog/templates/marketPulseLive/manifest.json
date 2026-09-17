@@ -1,0 +1,16 @@
+{
+  "app_id": "market_pulse_live-6e30aa9c",
+  "name": "market_pulse_live",
+  "display_name": "全球市场",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "author": "XTApp Creator",
+  "description": "联网查询美股、恒生、美元、原油与主要汇率的真实市场脉搏。",
+  "permissions": ["net.http"],
+  "display": { "orientation": "portrait" },
+  "app_icon_l": "app_icon_l",
+  "app_icon_s": "app_icon_s",
+  "splash": "splash",
+  "preload_assets": ["splash", "app_icon_l", "app_icon_s"]
+}

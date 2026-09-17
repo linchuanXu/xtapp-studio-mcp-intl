@@ -1,0 +1,35 @@
+{
+  "app_id": "portrait_sketch_pendulum_clock-91d3ae6f",
+  "display_name": "素描摆钟",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "display": {
+    "orientation": "portrait"
+  },
+  "lockscreen": {
+    "enabled": true,
+    "entry": "lockscreen.lua",
+    "interval_sec": 60
+  },
+  "author": "XTApp Creator",
+  "description": "用细密铅笔线和纸张留白描出机械摆钟，让数字时间像被写进一张设计手稿。",
+  "name": "portrait_sketch_pendulum_clock",
+  "app_icon_l": "app_icon_l",
+  "app_icon_s": "app_icon_s",
+  "splash": "splash",
+  "preload_assets": [
+    "splash",
+    "ornament",
+    "kaisei_digit_0",
+    "kaisei_digit_1",
+    "kaisei_digit_2",
+    "kaisei_digit_3",
+    "kaisei_digit_4",
+    "kaisei_digit_5",
+    "kaisei_digit_6",
+    "kaisei_digit_7",
+    "kaisei_digit_8",
+    "kaisei_digit_9"
+  ]
+}

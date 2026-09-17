@@ -1,0 +1,12 @@
+{
+  "app_id": "fridge_inventory-9472b499",
+  "display_name": "冰箱食材管家",
+  "version": "1.0.0",
+  "api": "0.8",
+  "entry": "index.lua",
+  "display": { "orientation": "portrait" },
+  "author": "XTApp Creator",
+  "description": "离线模拟一台家庭冰箱的分区库存与临期食材。",
+  "name": "fridge_inventory",
+  "preload_assets": ["icon_chill", "icon_frozen", "icon_produce", "icon_pantry"]
+}
