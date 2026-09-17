@@ -14,7 +14,7 @@ function flag(name, fallback = '') {
   return fallback
 }
 
-const dest = resolve(flag('dest', process.env.XTAPP_INTL_PLUGIN_DIR || join(root, '..', 'xtapp-codex-plugin-intl')))
+const dest = resolve(flag('dest', process.env.XTAPP_INTL_PLUGIN_DIR || join(root, '..', 'xtapp-studio-mcp-intl')))
 const studioOrigin = String(flag('studio-origin', process.env.XTAPP_INTL_STUDIO_ORIGIN || '')).trim().replace(/\/$/, '')
 const shouldPush = args.includes('--push')
 const intlBase = JSON.parse(readFileSync(join(root, 'regions', 'intl.json'), 'utf8'))

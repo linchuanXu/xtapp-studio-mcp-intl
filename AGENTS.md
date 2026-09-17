@@ -331,7 +331,7 @@ Enter only when the user asks to refresh, validate, or release:
 3. Run `npm run check` and `npm run build:mcp` when MCP sources change.
 4. Overseas GitHub is a generated repo. From this source checkout:
    `npm run publish:intl -- --studio-origin <overseas-studio> --push`
-   Do not hand-edit `xtapp-codex-plugin-intl`.
+   Do not hand-edit `xtapp-studio-mcp-intl`.
 5. Keep changes unpushed unless publication was explicitly authorized.
 6. Never write private source names, clone URLs, or checkout paths into
    this repository.

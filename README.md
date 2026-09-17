@@ -1,4 +1,4 @@
-# XTApp Codex Plugin
+# XTApp Studio MCP
 
 English · [中文文档](README.zh-CN.md)
 
@@ -50,8 +50,8 @@ of overwriting it.
 
 - Baseline: local stdio MCP `xtapp_studio` (`node ./mcp/server.bundle.mjs`)
 - Codex enhancement: Git marketplace plugin from `main`
-- Marketplace / selector / Studio origin: `region.json` (this checkout is China; overseas is `xtapp-codex-plugin-intl`)
-- Plugin: `xtapp-codex-plugin`
+- Marketplace / selector / Studio origin: `region.json` (this checkout is China; overseas is `xtapp-studio-mcp-intl`)
+- Plugin: `xtapp-studio-mcp`
 - Display name: `XTApp Studio`
 - Plugin version: `0.1.5`
 - Runtime: signed-in XTApp Studio
@@ -94,8 +94,8 @@ If the plugin is already installed, refresh the marketplace instead of
 building a custom updater:
 
 ```bash
-codex plugin marketplace upgrade xtapp-codex-plugin-github --json
-codex plugin add xtapp-codex-plugin@xtapp-codex-plugin-github --json
+codex plugin marketplace upgrade "$(node scripts/region-field.mjs marketplaceName)" --json
+codex plugin add "$(node scripts/region-field.mjs pluginSelector)" --json
 ```
 
 Codex may also auto-upgrade this Git marketplace on plugin startup. Start

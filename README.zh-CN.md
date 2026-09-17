@@ -1,4 +1,4 @@
-# XTApp Codex Plugin
+# XTApp Studio MCP
 
 [English](README.md) · 中文
 
@@ -47,8 +47,8 @@ Codex 插件：marketplace 包同一份 MCP + skills + 状态 Widget
 
 - 基线：本地 stdio MCP `xtapp_studio`（`node ./mcp/server.bundle.mjs`）
 - Codex 增强：从 `main` 发布的 Git marketplace 插件
-- Marketplace / 选择器 / Studio 源：`region.json`（本仓是国内；国外是 `xtapp-codex-plugin-intl`）
-- Plugin：`xtapp-codex-plugin`
+- Marketplace / 选择器 / Studio 源：`region.json`（本仓是国内；国外是 `xtapp-studio-mcp-intl`）
+- Plugin：`xtapp-studio-mcp`
 - 显示名：`XTApp Studio`
 - 插件版本：`0.1.5`
 - 运行时：已登录的 XTApp Studio

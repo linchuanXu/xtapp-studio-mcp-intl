@@ -9,7 +9,7 @@ test('CN region.json has a Studio origin and the China GitHub source', () => {
   const region = loadPluginRegion()
   assert.equal(region.id, 'cn')
   assert.equal(region.studioOrigin, 'https://xtapp-ai-dev.xteink.cn')
-  assert.equal(region.githubSource, 'linchuanXu/xtapp-codex-plugin')
+  assert.equal(region.githubSource, 'linchuanXu/xtapp-studio-mcp')
   assert.equal(resolveStudioOrigin({ env: {}, region }), 'https://xtapp-ai-dev.xteink.cn')
 })
 
@@ -36,9 +36,9 @@ test('intl overlay keeps a distinct GitHub source', async () => {
   await writeFile(path, JSON.stringify({
     id: 'intl',
     studioOrigin: 'https://studio.example',
-    githubSource: 'linchuanXu/xtapp-codex-plugin-intl',
+    githubSource: 'linchuanXu/xtapp-studio-mcp-intl',
   }))
   const region = loadPluginRegion(path)
-  assert.equal(region.githubSource, 'linchuanXu/xtapp-codex-plugin-intl')
+  assert.equal(region.githubSource, 'linchuanXu/xtapp-studio-mcp-intl')
   assert.equal(resolveStudioOrigin({ env: {}, region }), 'https://studio.example')
 })
