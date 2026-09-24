@@ -334,9 +334,14 @@ Enter only when the user asks to refresh, validate, or release:
    committed `knowledge/index.json` no longer matches those sources, and
    skips with a notice when no roots are provided.
 3. Run `npm run check` and `npm run build:mcp` when MCP sources change.
-4. Overseas GitHub is a generated repo. From this source checkout:
+4. Overseas GitHub is one generated repo (`xtapp-studio-mcp-intl`; the
+   older `xtapp-codex-plugin-intl` name redirects there). From this source
+   checkout:
    `npm run publish:intl -- --studio-origin <overseas-studio> --push`
-   Do not hand-edit `xtapp-studio-mcp-intl`.
+   Do not hand-edit generated overseas repos. `region.json` is the single
+   identity source: the publish rewrites `.agents/plugins/marketplace.json`
+   and `release-manifest.json` so all three agree, and the region tests
+   assert that agreement.
 5. Keep changes unpushed unless publication was explicitly authorized.
 6. Never write private source names, clone URLs, or checkout paths into
    this repository.

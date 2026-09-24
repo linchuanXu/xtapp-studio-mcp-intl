@@ -1,7 +1,7 @@
 {
-  "name": "xtapp-studio-mcp-github",
+  "name": "xtapp-studio-mcp-intl-github",
   "interface": {
-    "displayName": "XTApp Studio MCP"
+    "displayName": "XTApp Studio MCP Intl"
   },
   "plugins": [
     {
