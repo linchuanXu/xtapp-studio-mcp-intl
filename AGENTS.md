@@ -328,6 +328,11 @@ Enter only when the user asks to refresh, validate, or release:
    and `docs/INSTALL_CURSOR.md`.
 2. Refresh only the reviewed public payload files when the user provides
    maintainer-local source directories through environment variables.
+   `XTAPP_PUBLIC_KNOWLEDGE_DIR` accepts several roots separated by the
+   platform path delimiter (Studio generated documents + public assets).
+   Run `npm run knowledge:check` after refreshing: it fails when the
+   committed `knowledge/index.json` no longer matches those sources, and
+   skips with a notice when no roots are provided.
 3. Run `npm run check` and `npm run build:mcp` when MCP sources change.
 4. Overseas GitHub is a generated repo. From this source checkout:
    `npm run publish:intl -- --studio-origin <overseas-studio> --push`
