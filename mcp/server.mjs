@@ -13,6 +13,7 @@ import { readProjectSnapshot } from './projectSnapshot.mjs'
 import { pushProjectSnapshot, snapshotPushState, withProjectPushLock } from './previewSourceSync.mjs'
 import { describeStudioAssets, selectPullItems, splitExportBatches, writeExportedItems } from './studioPull.mjs'
 import { tapPreviewTarget } from './previewTap.mjs'
+import { appFileBytes, deleteAppFile, listAppFiles, readAppFile, writeAppFile } from './appFiles.mjs'
 import { resolveStudioOrigin } from './regionConfig.mjs'
 import { readStoreTemplate, TEMPLATE_GET_NOTE, TEMPLATE_COPY_NOTE } from './storeTemplate.mjs'
 import { searchSections } from './knowledgeSearch.mjs'
@@ -410,6 +411,32 @@ server.registerTool('watch_xtapp_preview', { description: 'Watch a local worktre
   return textResult(`已开始监听 ${root}；保存 Lua/Manifest 后，Studio 会自动同步源码并刷新预览。`, { status: 'watching', projectDir: root, intervalMs: 1000 })
 })
 
+const APP_FILES_NOTE = ' This is the app\'s folder on the preview storage card, /AppFiles/<app_id>/ (what the app reads and writes with ctx.files): user data, not project source. Needs a 2.x device, manifest.api 2.9 or later and an app_id, and Studio must show this projectDir (call run_xtapp_preview first). File names are case-insensitive.'
+
+async function appFilesTool(projectDir, run) {
+  const root = requireProjectDir(projectDir)
+  await selectProjectSession(root)
+  const result = await run((body) => awaitCommand('/preview/app_files', body, STUDIO_COMMAND_WAIT_MS), root)
+  const { contentBase64, content, ...details } = result
+  return textResult(result.message, details)
+}
+
+server.registerTool('list_xtapp_preview_app_files', { description: `List the files in the preview's app folder with their byte sizes.${APP_FILES_NOTE}`, inputSchema: { projectDir: z.string().trim().min(1) } }, async ({ projectDir }) => {
+  return appFilesTool(projectDir, (send) => listAppFiles(send))
+})
+
+server.registerTool('read_xtapp_preview_app_file', { description: `Read one file from the preview's app folder, e.g. data the app saved, to check what it wrote. UTF-8 text comes back as text; small binary files as base64. Pass savePath (relative to projectDir or absolute) to copy the exact bytes to a local file instead; large files need it.${APP_FILES_NOTE}`, inputSchema: { projectDir: z.string().trim().min(1), name: z.string().min(1).max(128), savePath: z.string().trim().min(1).optional() } }, async ({ projectDir, name, savePath }) => {
+  return appFilesTool(projectDir, (send, root) => readAppFile(send, { name, savePath, projectDir: root }))
+})
+
+server.registerTool('write_xtapp_preview_app_file', { description: `Create, replace or append to one file in the preview's app folder, as if the user copied it onto the card; the running app can read it with ctx.files right away. Use it to set up test data or repair bad data. Give exactly one of content (text, stored as UTF-8), contentBase64, or sourcePath (a local file, relative to projectDir or absolute). Large files are sent in parts automatically.${APP_FILES_NOTE}`, inputSchema: { projectDir: z.string().trim().min(1), name: z.string().min(1).max(128), content: z.string().optional(), contentBase64: z.string().optional(), sourcePath: z.string().trim().min(1).optional(), append: z.boolean().optional() } }, async ({ projectDir, name, content, contentBase64, sourcePath, append = false }) => {
+  return appFilesTool(projectDir, async (send, root) => writeAppFile(send, { name, append, bytes: await appFileBytes({ content, contentBase64, sourcePath, projectDir: root }) }))
+})
+
+server.registerTool('delete_xtapp_preview_app_file', { description: `Delete one file from the preview's app folder.${APP_FILES_NOTE}`, inputSchema: { projectDir: z.string().trim().min(1), name: z.string().min(1).max(128) } }, async ({ projectDir, name }) => {
+  return appFilesTool(projectDir, (send) => deleteAppFile(send, { name }))
+})
+
 server.registerTool('get_xtapp_preview_status', { description: 'Read whether the official Studio preview page is open, which app it is showing, and the exact previewUrl to open.', inputSchema: {} }, async () => {
   const result = await bridgeRequest('/preview/status', {}, 'GET')
   let displayName = displayNameFromManifest(result.manifest)
@@ -421,12 +448,12 @@ server.registerTool('get_xtapp_preview_status', { description: 'Read whether the
   return textResult(ready.message || JSON.stringify(ready), ready)
 })
 
-server.registerTool('inspect_xtapp_preview_context', { description: 'Inspect the active Studio project manifest, Lua entry snippets and recent runtime logs for joint diagnosis.', inputSchema: { query: z.string().trim().optional() } }, async ({ query = '' }) => {
+server.registerTool('inspect_xtapp_preview_context', { description: 'Inspect the active Studio project manifest, Lua entry snippets, recent runtime logs and the Problems panel diagnostics (errors, off-screen text, refresh, memory and draw limits) for joint diagnosis.', inputSchema: { query: z.string().trim().optional() } }, async ({ query = '' }) => {
   const context = await bridgeRequest('/preview/context', {}, 'GET')
   if (context.status === 'not_connected') return textResult(JSON.stringify(context), context)
   const needle = String(query).toLowerCase()
   const files = Object.fromEntries(Object.entries(context.files || {}).filter(([path, content]) => !needle || path.toLowerCase().includes(needle) || String(content).toLowerCase().includes(needle)))
-  const result = { projectId: context.projectId || null, manifest: context.manifest || null, files, logs: context.logs || [], updatedAt: context.updatedAt || null }
+  const result = { projectId: context.projectId || null, manifest: context.manifest || null, files, logs: context.logs || [], diagnostics: context.diagnostics || [], updatedAt: context.updatedAt || null }
   return textResult(JSON.stringify(result, null, 2), { ...result, fileCount: Object.keys(files).length })
 })
 
