@@ -39,7 +39,7 @@
   },
   "plugin": {
     "name": "xtapp-studio-mcp",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "path": ".",
     "displayName": "XTApp Studio",
     "selector": "xtapp-studio-mcp@xtapp-studio-mcp-intl-github",
@@ -47,7 +47,7 @@
   },
   "source": {
     "runtime": "signed-in-xtapp-studio",
-    "defaultPreviewHost": "https://xtapp-ai-dev.xteink.cn",
+    "defaultPreviewHost": "https://xtapp-ai.xteink.cc",
     "previewUrlSource": "get_xtapp_preview_status"
   }
 }

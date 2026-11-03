@@ -22,6 +22,8 @@ Widget。
 [docs/INSTALL_CODEX.zh-CN.md](docs/INSTALL_CODEX.zh-CN.md)、
 [docs/INSTALL_CURSOR.zh-CN.md](docs/INSTALL_CURSOR.zh-CN.md)
 
+装好以后插件改了什么、东西存在哪、和云工程什么关系：[docs/GUIDE.zh-CN.md](docs/GUIDE.zh-CN.md)
+
 ## 架构
 
 MCP 才是产品。它不执行 Lua，也不是设备模拟器。Codex 插件模式是这份 MCP
@@ -50,11 +52,11 @@ Codex 插件：marketplace 包同一份 MCP + skills + 状态 Widget
 - Marketplace / 选择器 / Studio 源：`region.json`（本仓是国内；国外是 `xtapp-studio-mcp-intl`）
 - Plugin：`xtapp-studio-mcp`
 - 显示名：`XTApp Studio`
-- 插件版本：`0.1.8`
+- 插件版本：`0.1.9`
 - 运行时：已登录的 XTApp Studio
 - 默认预览：以 `get_xtapp_preview_status` 返回的 `previewUrl` 为准
 - Skills：`xtapp-contracts`、`xtapp-open-preview`（可移植；Codex 会自动加载）
-- 公开知识：`knowledge/index.json`（schema 3，111 条：2.x 契约条文与指南 82、两代通用 4、冻结的 0.8 页 25；检索不返回 0.8）
+- 公开知识：`knowledge/index.json`（schema 3，123 条：2.x 契约条文与指南 86、两代通用 6、冻结的 0.8 页 31；检索不返回 0.8）
 - 公开目录：`catalog/index.json`（107 个审核过的文本模板）
 - Widget：`widget/index.html` 仅 Codex；显示预览状态，不是模拟器画面
 
