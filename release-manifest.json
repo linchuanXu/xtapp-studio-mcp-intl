@@ -47,7 +47,7 @@
   },
   "source": {
     "runtime": "signed-in-xtapp-studio",
-    "defaultPreviewHost": "https://xtapp-ai.xteink.cc",
+    "defaultPreviewHost": "https://xtapp-ai.xteink.com",
     "previewUrlSource": "get_xtapp_preview_status"
   }
 }
